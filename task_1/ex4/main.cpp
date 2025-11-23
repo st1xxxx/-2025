@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <limits>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -51,11 +52,8 @@ bool multiply(const vector<vector<int>>& A, const vector<vector<int>>& B, vector
     return true;
 }
 
-int main() {
-#ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-#endif
+// Вынесем основную логику в отдельную функцию, чтобы всегда выполнить паузу в конце
+int runMain() {
     printStudentInfo();
 
     int r1, c1, r2, c2;
@@ -103,4 +101,18 @@ int main() {
     }
 
     return 0;
+}
+
+int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+    int code = runMain();
+
+    // Пауза перед закрытием — чтобы окно не закрывалось сразу при запуске двойным кликом
+    cout << "\nPress Enter to exit...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // очистить остаток ввода
+    cin.get();
+    return code;
 }
