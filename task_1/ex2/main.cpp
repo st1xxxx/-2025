@@ -1,15 +1,18 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib>
+#include <random>
 #include <ctime>
-#include <limits>
+#include <limits> // Добавляем этот заголовок
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
 void printStudentInfo() {
-    cout << "Student: Skvorcov Serafim" << endl;
-    cout << "Group: M10-137BV-25" << endl;
-    cout << "Task: 2" << endl;
+    cout << "Студент: Скворцов Серафим Денисович" << endl;
+    cout << "Группа: M10-137БВ-25" << endl;
+    cout << "Задача: 2" << endl;
     cout << endl;
 }
 
@@ -22,25 +25,30 @@ void printMatrix(const vector<vector<int>>& matrix) {
     }
 }
 
-vector<vector<int>> randomMatrix(int rows, int cols) {
-    srand(time(nullptr)); // Простой генератор случайных чисел
+vector<vector<int>> randomMatrix(int rows, int cols, int minv = -500, int maxv = 500) {
+    std::mt19937 rng(static_cast<unsigned int>(time(nullptr)));
+    std::uniform_int_distribution<int> dist(minv, maxv);
     vector<vector<int>> m(rows, vector<int>(cols));
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            m[i][j] = rand() % 1001 - 500; // от -500 до 500
+            m[i][j] = dist(rng);
         }
     }
     return m;
 }
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
     printStudentInfo();
 
     int rows, cols;
     cout << "Enter number of rows: ";
-    cin >> rows;
+    if (!(cin >> rows)) return 0;
     cout << "Enter number of columns: ";
-    cin >> cols;
+    if (!(cin >> cols)) return 0;
 
     auto m = randomMatrix(rows, cols);
     cout << "Generated matrix:" << endl;
@@ -48,8 +56,8 @@ int main() {
 
     
     cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cin.get();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер
+    cin.get(); 
 
     return 0;
 }
