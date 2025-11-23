@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -37,6 +38,10 @@ int main() {
 
     cout << "Matrix contents:" << endl;
     printMatrix(m);
+    // Pause so the console window doesn't close immediately when launched by double-click
+    cout << "\nPress Enter to exit...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 
     return 0;
 }
