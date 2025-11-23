@@ -64,8 +64,30 @@ int main() {
     cout << "Enter rows and cols for matrix B (two integers): ";
     if (!(cin >> r2 >> c2)) return 0;
 
-    auto A = randomMatrix(r1, c1);
-    auto B = randomMatrix(r2, c2);
+    // Basic validation to avoid negative/zero sizes and unreasonable allocations
+    const int MAX_DIM = 1000; // safety cap to avoid huge allocations
+    if (r1 <= 0 || c1 <= 0 || r2 <= 0 || c2 <= 0) {
+        cout << "Error: rows and cols must be positive integers." << endl;
+        return 1;
+    }
+    if (r1 > MAX_DIM || c1 > MAX_DIM || r2 > MAX_DIM || c2 > MAX_DIM) {
+        cout << "Error: dimensions too large (max " << MAX_DIM << ")." << endl;
+        return 1;
+    }
+
+    if (c1 != r2) {
+        cout << "Matrices cannot be multiplied: A.columns != B.rows" << endl;
+        return 1;
+    }
+
+    vector<vector<int>> A, B;
+    try {
+        A = randomMatrix(r1, c1);
+        B = randomMatrix(r2, c2);
+    } catch (const std::bad_alloc&) {
+        cout << "Error: not enough memory to allocate matrices with given sizes." << endl;
+        return 1;
+    }
 
     cout << "Matrix A:" << endl;
     printMatrix(A);
