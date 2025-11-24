@@ -1,63 +1,68 @@
 #include <iostream>
-#include <vector>
-#include <random>
-#include <ctime>
-#include <limits> 
-#ifdef _WIN32
+#include <map>
+#include <string>
+#include <limits>
 #include <windows.h>
-#endif
 
 using namespace std;
 
 void printStudentInfo() {
+    SetConsoleOutputCP(CP_UTF8);
     cout << "Студент: Скворцов Серафим Денисович" << endl;
     cout << "Группа: M10-137БВ-25" << endl;
     cout << "Задача: 2" << endl;
     cout << endl;
 }
 
-void printMatrix(const vector<vector<int>>& matrix) {
-    for (const auto& row : matrix) {
-        for (const auto& element : row) {
-            cout << element << '\t';
-        }
-        cout << endl;
+
+void addStudent(map<string, bool>& drivers, const string& surname, bool hasLicense) {
+    drivers[surname] = hasLicense;
+    cout << "Студент " << surname << " добавлен. Права: " << (hasLicense ? "есть" : "нет") << endl;
+}
+
+
+void removeStudent(map<string, bool>& drivers, const string& surname) {
+    auto it = drivers.find(surname);
+    if (it != drivers.end()) {
+        drivers.erase(it);
+        cout << "Студент " << surname << " удален." << endl;
+    } else {
+        cout << "Студент " << surname << " не найден." << endl;
     }
 }
 
-vector<vector<int>> randomMatrix(int rows, int cols, int minv = -500, int maxv = 500) {
-    std::mt19937 rng(static_cast<unsigned int>(time(nullptr)));
-    std::uniform_int_distribution<int> dist(minv, maxv);
-    vector<vector<int>> m(rows, vector<int>(cols));
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            m[i][j] = dist(rng);
-        }
+
+void printDrivers(const map<string, bool>& drivers) {
+    cout << "\nТекущий список:" << endl;
+    for (const auto& student : drivers) {
+        cout << student.first << " -> " << (student.second ? "есть права" : "нет прав") << endl;
     }
-    return m;
 }
 
 int main() {
-#ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-#endif
     printStudentInfo();
-
-    int rows, cols;
-    cout << "Enter number of rows: ";
-    cin >> rows;
-    cout << "Enter number of columns: ";
-    cin >> cols;
-
-    auto m = randomMatrix(rows, cols);
-    cout << "Generated matrix:" << endl;
-    printMatrix(m);
-
     
-    cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-    cin.get(); 
-
+    map<string, bool> drivers;
+    
+    
+    cout << "Добавление студентов:" << endl;
+    addStudent(drivers, "Иванов", true);
+    addStudent(drivers, "Петров", false);
+    addStudent(drivers, "Сидоров", true);
+    addStudent(drivers, "Кузнецов", false);
+    
+    printDrivers(drivers);
+    
+    
+    cout << "\nУдаление студентов:" << endl;
+    removeStudent(drivers, "Петров");
+    removeStudent(drivers, "Смирнов"); 
+    
+    printDrivers(drivers);
+    
+    cout << "\nНажмите Enter для выхода...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+    
     return 0;
 }
