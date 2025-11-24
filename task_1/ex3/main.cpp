@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <limits> // Добавляем для numeric_limits
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -67,6 +68,11 @@ int main() {
     auto t = transpose(m);
     cout << "Transposed matrix:" << endl;
     printMatrix(t);
+
+    // ДОБАВЛЯЕМ ОЖИДАНИЕ ВВОДА
+    cout << "\nPress Enter to exit...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер ввода
+    cin.get(); // Ждем нажатия Enter
 
     return 0;
 }
