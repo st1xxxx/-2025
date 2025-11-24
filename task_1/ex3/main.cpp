@@ -6,9 +6,9 @@
 using namespace std;
 
 void printStudentInfo() {
-    cout << "Student: Skvorcov Serafim" << endl;
-    cout << "Group: M10-137BV-25" << endl;
-    cout << "Task: 3" << endl;
+    cout << "Студент: Серафим Скворцов" << endl;
+    cout << "Группа: М10-137БВ-25" << endl;
+    cout << "Задание: 3" << endl;
     cout << endl;
 }
 
