@@ -52,7 +52,6 @@ bool multiply(const vector<vector<int>>& A, const vector<vector<int>>& B, vector
     return true;
 }
 
-// Вынесем основную логику в отдельную функцию, чтобы всегда выполнить паузу в конце
 int runMain() {
     printStudentInfo();
 
@@ -110,9 +109,8 @@ int main() {
 #endif
     int code = runMain();
 
-    // Пауза перед закрытием — чтобы окно не закрывалось сразу при запуске двойным кликом
     cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // очистить остаток ввода
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
     cin.get();
     return code;
 }

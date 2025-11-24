@@ -2,7 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
-#include <limits> // Добавляем этот заголовок
+#include <limits> 
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -54,9 +54,9 @@ int main() {
     cout << "Generated matrix:" << endl;
     printMatrix(m);
 
-    // ИСПРАВЛЕННАЯ ЧАСТЬ:
+    
     cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
     cin.get(); 
 
     return 0;
