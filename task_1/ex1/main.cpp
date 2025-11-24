@@ -38,7 +38,6 @@ int main() {
 
     cout << "Matrix contents:" << endl;
     printMatrix(m);
-    // Pause so the console window doesn't close immediately when launched by double-click
     cout << "\nPress Enter to exit...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
