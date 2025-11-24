@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
+#include <string>
+#include <limits>
 #include <windows.h>
 
 using namespace std;
@@ -14,58 +14,35 @@ void printStudentInfo() {
     cout << endl;
 }
 
-void printMatrix(const vector<vector<int>>& matrix) {
-    for (size_t i = 0; i < matrix.size(); i++) {
-        for (size_t j = 0; j < matrix[i].size(); j++) {
-            cout << matrix[i][j] << '\t';
-        }
-        cout << endl;
-    }
-}
 
-vector<vector<int>> randomMatrix(int rows, int cols) {
-    srand(time(nullptr));
-    vector<vector<int>> m(rows, vector<int>(cols));
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            m[i][j] = rand() % 1001 - 500;
-        }
+template<typename T>
+void printVector(const vector<T>& vec) {
+    cout << "My vector has " << vec.size() << " of these elements:" << endl;
+    for (size_t i = 0; i < vec.size(); i++) {
+        cout << "[" << i << "] -> " << vec[i] << endl;
     }
-    return m;
-}
-
-vector<vector<int>> transpose(const vector<vector<int>>& a) {
-    if (a.empty()) return {};
-    size_t rows = a.size();
-    size_t cols = a[0].size();
-    vector<vector<int>> t(cols, vector<int>(rows));
-    for (size_t i = 0; i < rows; i++)
-        for (size_t j = 0; j < cols; j++)
-            t[j][i] = a[i][j];
-    return t;
 }
 
 int main() {
     printStudentInfo();
-
-    int rows, cols;
-    cout << "Введите количество строк: ";
-    cin >> rows;
-    cout << "Введите количество столбцов: ";
-    cin >> cols;
-
-    auto m = randomMatrix(rows, cols);
-    cout << "Исходная матрица:" << endl;
-    printMatrix(m);
-
-    auto t = transpose(m);
-    cout << "Транспонированная матрица:" << endl;
-    printMatrix(t);
-
-    cout << "\n=== ПРОГРАММА ЗАВЕРШЕНА ===" << endl;
-    cout << "Нажмите любую клавишу для выхода..." << endl;
-    system("pause > nul");
-    system("pause");
-
+    
+    
+    vector<int> intVec = {1, 2, 3, 4, 5};
+    vector<string> strVec = {"apple", "banana", "cherry"};
+    vector<double> doubleVec = {1.1, 2.2, 3.3, 4.4};
+    
+    cout << "Вектор int:" << endl;
+    printVector(intVec);
+    
+    cout << "\nВектор string:" << endl;
+    printVector(strVec);
+    
+    cout << "\nВектор double:" << endl;
+    printVector(doubleVec);
+    
+    cout << "\nНажмите Enter для выхода...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+    
     return 0;
 }
