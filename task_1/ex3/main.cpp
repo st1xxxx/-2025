@@ -2,7 +2,9 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-
+#ifdef _WIN32
+#include <windows.h>
+#endif
 using namespace std;
 
 void printStudentInfo() {
