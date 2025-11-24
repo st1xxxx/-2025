@@ -2,15 +2,15 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#ifdef _WIN32
 #include <windows.h>
-#endif
+
 using namespace std;
 
 void printStudentInfo() {
-    cout << "Студент: Серафим Скворцов" << endl;
-    cout << "Группа: М10-137БВ-25" << endl;
-    cout << "Задание: 3" << endl;
+    SetConsoleOutputCP(CP_UTF8);
+    cout << "Студент: Скворцов Серафим Денисович" << endl;
+    cout << "Группа: M10-137БВ-25" << endl;
+    cout << "Задача: 3" << endl;
     cout << endl;
 }
 
@@ -49,22 +49,21 @@ int main() {
     printStudentInfo();
 
     int rows, cols;
-    cout << "Enter number of rows: ";
+    cout << "Введите количество строк: ";
     cin >> rows;
-    cout << "Enter number of columns: ";
+    cout << "Введите количество столбцов: ";
     cin >> cols;
 
     auto m = randomMatrix(rows, cols);
-    cout << "Original matrix:" << endl;
+    cout << "Исходная матрица:" << endl;
     printMatrix(m);
 
     auto t = transpose(m);
-    cout << "Transposed matrix:" << endl;
+    cout << "Транспонированная матрица:" << endl;
     printMatrix(t);
 
-    // ГАРАНТИРОВАННАЯ ПАУЗА
-    cout << "\n=== PROGRAM FINISHED ===" << endl;
-    cout << "Press any key to exit..." << endl;
+    cout << "\n=== ПРОГРАММА ЗАВЕРШЕНА ===" << endl;
+    cout << "Нажмите любую клавишу для выхода..." << endl;
     system("pause > nul");
     system("pause");
 
