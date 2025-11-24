@@ -2,7 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
-#include <limits>
+#include <limits> // Добавляем этот заголовок
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -56,7 +56,7 @@ int main() {
 
     // ИСПРАВЛЕННАЯ ЧАСТЬ:
     cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер от предыдущего ввода
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер
     cin.get(); 
 
     return 0;
