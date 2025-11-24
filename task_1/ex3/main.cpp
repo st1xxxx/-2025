@@ -1,37 +1,32 @@
 #include <iostream>
 #include <vector>
-#include <random>
+#include <cstdlib>
 #include <ctime>
-#include <cstdlib> 
-#ifdef _WIN32
-#include <windows.h>
-#endif
 
 using namespace std;
 
 void printStudentInfo() {
-    cout << "Студент: Скворцов Серафим Денисович" << endl;
-    cout << "Группа: M10-137БВ-25" << endl;
-    cout << "Задача: 3" << endl;
+    cout << "Student: Skvorcov Serafim" << endl;
+    cout << "Group: M10-137BV-25" << endl;
+    cout << "Task: 3" << endl;
     cout << endl;
 }
 
 void printMatrix(const vector<vector<int>>& matrix) {
-    for (const auto& row : matrix) {
-        for (const auto& element : row) {
-            cout << element << '\t';
+    for (size_t i = 0; i < matrix.size(); i++) {
+        for (size_t j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << '\t';
         }
         cout << endl;
     }
 }
 
-vector<vector<int>> randomMatrix(int rows, int cols, int minv = -500, int maxv = 500) {
-    std::mt19937 rng(static_cast<unsigned int>(time(nullptr)));
-    std::uniform_int_distribution<int> dist(minv, maxv);
+vector<vector<int>> randomMatrix(int rows, int cols) {
+    srand(time(nullptr));
     vector<vector<int>> m(rows, vector<int>(cols));
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            m[i][j] = dist(rng);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j] = rand() % 1001 - 500;
         }
     }
     return m;
@@ -42,17 +37,13 @@ vector<vector<int>> transpose(const vector<vector<int>>& a) {
     size_t rows = a.size();
     size_t cols = a[0].size();
     vector<vector<int>> t(cols, vector<int>(rows));
-    for (size_t i = 0; i < rows; ++i)
-        for (size_t j = 0; j < cols; ++j)
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < cols; j++)
             t[j][i] = a[i][j];
     return t;
 }
 
 int main() {
-#ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-#endif
     printStudentInfo();
 
     int rows, cols;
@@ -69,7 +60,10 @@ int main() {
     cout << "Transposed matrix:" << endl;
     printMatrix(t);
 
-    
+    // ГАРАНТИРОВАННАЯ ПАУЗА
+    cout << "\n=== PROGRAM FINISHED ===" << endl;
+    cout << "Press any key to exit..." << endl;
+    system("pause > nul");
     system("pause");
 
     return 0;
