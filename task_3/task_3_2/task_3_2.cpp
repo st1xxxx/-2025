@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <fstream>
 #include <string>
 #include <limits>
 #include <windows.h>
@@ -15,50 +15,27 @@ void printStudentInfo() {
 }
 
 
-void addStudent(map<string, bool>& drivers, const string& surname, bool hasLicense) {
-    drivers[surname] = hasLicense;
-    cout << "Студент " << surname << " добавлен. Права: " << (hasLicense ? "есть" : "нет") << endl;
-}
 
-
-void removeStudent(map<string, bool>& drivers, const string& surname) {
-    auto it = drivers.find(surname);
-    if (it != drivers.end()) {
-        drivers.erase(it);
-        cout << "Студент " << surname << " удален." << endl;
-    } else {
-        cout << "Студент " << surname << " не найден." << endl;
-    }
-}
-
-
-void printDrivers(const map<string, bool>& drivers) {
-    cout << "\nТекущий список:" << endl;
-    for (const auto& student : drivers) {
-        cout << student.first << " -> " << (student.second ? "есть права" : "нет прав") << endl;
-    }
-}
 
 int main() {
     printStudentInfo();
     
-    map<string, bool> drivers;
+    ifstream file("books.txt");
     
-    
-    cout << "Добавление студентов:" << endl;
-    addStudent(drivers, "Иванов", true);
-    addStudent(drivers, "Петров", false);
-    addStudent(drivers, "Сидоров", true);
-    addStudent(drivers, "Кузнецов", false);
-    
-    printDrivers(drivers);
-    
-    
-    cout << "\nУдаление студентов:" << endl;
-    removeStudent(drivers, "Петров");
-    removeStudent(drivers, "Смирнов"); 
-    
-    printDrivers(drivers);
+    if (!file.is_open()) {
+        cout << "Ошибка: файл 'books.txt' не найден!" << endl;
+        cout << "Сначала выполните задание 1 для создания файла." << endl;
+    } else {
+        cout << "Содержимое файла 'books.txt':" << endl;
+        cout << "=============================" << endl;
+        
+        string line;
+        while (getline(file, line)) {
+            cout << line << endl;
+        }
+        
+        file.close();
+    }
     
     cout << "\nНажмите Enter для выхода...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
