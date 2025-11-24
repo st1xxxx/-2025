@@ -2,7 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
-#include <limits> // Добавляем этот заголовок
+#include <limits>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -46,17 +46,17 @@ int main() {
 
     int rows, cols;
     cout << "Enter number of rows: ";
-    if (!(cin >> rows)) return 0;
+    cin >> rows;
     cout << "Enter number of columns: ";
-    if (!(cin >> cols)) return 0;
+    cin >> cols;
 
     auto m = randomMatrix(rows, cols);
     cout << "Generated matrix:" << endl;
     printMatrix(m);
 
-    
+    // ИСПРАВЛЕННАЯ ЧАСТЬ:
     cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер от предыдущего ввода
     cin.get(); 
 
     return 0;
