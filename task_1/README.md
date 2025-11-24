@@ -1,6 +1,6 @@
 # task_1
 
-Содержит решения для ДЗ №1 в папке `task_1` (ex1..ex4).
+Содержит решения для ДЗ №1 в папке `task_1` (task_1_1..task_1_4).
 
 Как собрать (PowerShell, g++)
 
@@ -14,8 +14,8 @@ cd "c:\Users\Серафим\Desktop\repository\-2025-1\task_1"
 Или собрать одну задачу вручную (пример для `ex1`):
 
 ```powershell
-cd "c:\Users\Серафим\Desktop\repository\-2025-1\task_1\ex1"
-g++ -std=c++17 -O2 -Wall -Wextra -o ex1.exe main.cpp
+cd "c:\Users\Серафим\Desktop\repository\-2025-1\task_1\task_1_1"
+g++ -std=c++17 -O2 -Wall -Wextra -o task_1_1.exe main.cpp
 .\ex1.exe
 ```
 
