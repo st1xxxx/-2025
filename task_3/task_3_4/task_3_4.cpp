@@ -1,6 +1,7 @@
 #include <iostream>
-#include <vector>
+#include <fstream>
 #include <string>
+#include <sstream>
 #include <limits>
 #include <windows.h>
 
@@ -15,46 +16,54 @@ void printStudentInfo() {
 }
 
 
-template<typename T>
-void printVector(const vector<T>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements:" << endl;
-    for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i] << endl;
-    }
-}
 
-
-template<typename T>
-vector<T> operator+(const vector<T>& vec1, const vector<T>& vec2) {
-    vector<T> result = vec1;
-    result.insert(result.end(), vec2.begin(), vec2.end());
-    return result;
-}
 
 int main() {
     printStudentInfo();
     
-    vector<int> vec1 = {1, 2, 3};
-    vector<int> vec2 = {4, 5, 6};
+    string filename;
+    cout << "Введите имя файла для анализа (например: input.txt): ";
+    cin >> filename;
     
-    cout << "Первый вектор:" << endl;
-    printVector(vec1);
+    ifstream file(filename);
     
-    cout << "\nВторой вектор:" << endl;
-    printVector(vec2);
-    
-    vector<int> result = vec1 + vec2;
-    
-    cout << "\nРезультат объединения (vec1 + vec2):" << endl;
-    printVector(result);
-    
-    // Демонстрация с string
-    vector<string> strVec1 = {"Hello", "World"};
-    vector<string> strVec2 = {"from", "C++"};
-    
-    cout << "\nОбъединение строковых векторов:" << endl;
-    vector<string> strResult = strVec1 + strVec2;
-    printVector(strResult);
+    if (!file.is_open()) {
+        cout << "Ошибка: файл '" << filename << "' не найден!" << endl;
+        cout << "Убедитесь, что файл существует в текущей папке." << endl;
+    } else {
+        int lineCount = 0;
+        int wordCount = 0;
+        string line;
+        
+        while (getline(file, line)) {
+            lineCount++;
+            
+            stringstream ss(line);
+            string word;
+            while (ss >> word) {
+                wordCount++;
+            }
+        }
+        
+        file.close();
+        
+        
+        cout << "\nСтатистика файла '" << filename << "':" << endl;
+        cout << "Общее количество строк: " << lineCount << endl;
+        cout << "Общее количество слов: " << wordCount << endl;
+        
+        
+        ofstream report("report.txt");
+        if (report.is_open()) {
+            report << "Статистика файла: " << filename << endl;
+            report << "Общее количество строк: " << lineCount << endl;
+            report << "Общее количество слов: " << wordCount << endl;
+            report.close();
+            cout << "\nРезультаты сохранены в файл 'report.txt'" << endl;
+        } else {
+            cout << "\nОшибка создания файла 'report.txt'" << endl;
+        }
+    }
     
     cout << "\nНажмите Enter для выхода...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
