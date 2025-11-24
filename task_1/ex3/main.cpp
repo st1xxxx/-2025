@@ -2,7 +2,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
-#include <limits> // Добавляем для numeric_limits
+#include <cstdlib> 
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -57,9 +57,9 @@ int main() {
 
     int rows, cols;
     cout << "Enter number of rows: ";
-    if (!(cin >> rows)) return 0;
+    cin >> rows;
     cout << "Enter number of columns: ";
-    if (!(cin >> cols)) return 0;
+    cin >> cols;
 
     auto m = randomMatrix(rows, cols);
     cout << "Original matrix:" << endl;
@@ -69,10 +69,8 @@ int main() {
     cout << "Transposed matrix:" << endl;
     printMatrix(t);
 
-    // ДОБАВЛЯЕМ ОЖИДАНИЕ ВВОДА
-    cout << "\nPress Enter to exit...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер ввода
-    cin.get(); // Ждем нажатия Enter
+    
+    system("pause");
 
     return 0;
 }
