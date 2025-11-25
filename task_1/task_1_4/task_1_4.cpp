@@ -61,8 +61,8 @@ int runMain() {
     cout << "Enter rows and cols for matrix B (two integers): ";
     if (!(cin >> r2 >> c2)) return 0;
 
-    // Basic validation to avoid negative/zero sizes and unreasonable allocations
-    const int MAX_DIM = 1000; // safety cap to avoid huge allocations
+   
+    const int MAX_DIM = 1000; 
     if (r1 <= 0 || c1 <= 0 || r2 <= 0 || c2 <= 0) {
         cout << "Error: rows and cols must be positive integers." << endl;
         return 1;
