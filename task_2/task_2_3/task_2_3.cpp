@@ -8,19 +8,47 @@ using namespace std;
 
 void printStudentInfo() {
     SetConsoleOutputCP(CP_UTF8);
-    cout << "Студент: Скворцов Серафим Денисович" << endl;
-    cout << "Группа: M10-137БВ-25" << endl;
-    cout << "Задача: 3" << endl;
+    cout << "Student: Skvortsov Serafim Denisovich" << endl;
+    cout << "Group: M10-137BV-25" << endl;
+    cout << "Task: 3" << endl;
     cout << endl;
 }
 
 
-template<typename T>
-void printVector(const vector<T>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements:" << endl;
+void printVector(const vector<int>& vec) {
+    cout << "My vector has " << vec.size() << " of these elements: ";
     for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i] << endl;
+        cout << "[" << i << "] -> " << vec[i];
+        if (i < vec.size() - 1) cout << ", ";
     }
+    cout << endl;
+}
+
+void printVector(const vector<string>& vec) {
+    cout << "My vector has " << vec.size() << " of these elements: ";
+    for (size_t i = 0; i < vec.size(); i++) {
+        cout << "[" << i << "] -> " << vec[i];
+        if (i < vec.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+void printVector(const vector<double>& vec) {
+    cout << "My vector has " << vec.size() << " of these elements: ";
+    for (size_t i = 0; i < vec.size(); i++) {
+        cout << "[" << i << "] -> " << vec[i];
+        if (i < vec.size() - 1) cout << ", ";
+    }
+    cout << endl;
+}
+
+void printVector(const vector<char>& vec) {
+    cout << "My vector has " << vec.size() << " of these elements: ";
+    for (size_t i = 0; i < vec.size(); i++) {
+        cout << "[" << i << "] -> " << vec[i];
+        if (i < vec.size() - 1) cout << ", ";
+    }
+    cout << endl;
 }
 
 int main() {
@@ -30,17 +58,21 @@ int main() {
     vector<int> intVec = {1, 2, 3, 4, 5};
     vector<string> strVec = {"apple", "banana", "cherry"};
     vector<double> doubleVec = {1.1, 2.2, 3.3, 4.4};
+    vector<char> charVec = {'A', 'B', 'C', 'D'};
     
-    cout << "Вектор int:" << endl;
+    cout << "Integer vector:" << endl;
     printVector(intVec);
     
-    cout << "\nВектор string:" << endl;
+    cout << "\nString vector:" << endl;
     printVector(strVec);
     
-    cout << "\nВектор double:" << endl;
+    cout << "\nDouble vector:" << endl;
     printVector(doubleVec);
     
-    cout << "\nНажмите Enter для выхода...";
+    cout << "\nChar vector:" << endl;
+    printVector(charVec);
+    
+    cout << "\nPress Enter to exit...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
     
