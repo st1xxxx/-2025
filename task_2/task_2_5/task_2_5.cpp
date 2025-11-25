@@ -16,40 +16,23 @@ void printStudentInfo() {
 }
 
 
-template<typename K, typename V>
-void printMap(const map<K, V>& myMap) {
-    cout << "My map has " << myMap.size() << " of keys and has these pairs:" << endl;
-    for (const auto& pair : myMap) {
-        cout << "[" << pair.first << "] -> {" << pair.second << "}" << endl;
+template<typename T>
+ostream& operator<<(ostream& os, const vector<T>& vec) {
+    for (size_t i = 0; i < vec.size(); i++) {
+        os << vec[i];
+        if (i < vec.size() - 1) os << ", ";
     }
+    return os;
 }
 
 
 template<typename K, typename V>
-void printMap(const map<K, vector<V>>& myMap) {
-    cout << "My map has " << myMap.size() << " of keys and has these pairs:" << endl;
+ostream& operator<<(ostream& os, const map<K, V>& myMap) {
+    os << "My map has " << myMap.size() << " of keys and has these pairs:" << endl;
     for (const auto& pair : myMap) {
-        cout << "[" << pair.first << "] -> {";
-        for (size_t i = 0; i < pair.second.size(); i++) {
-            cout << pair.second[i];
-            if (i < pair.second.size() - 1) cout << ", ";
-        }
-        cout << "}" << endl;
+        os << "[" << pair.first << "] -> {" << pair.second << "}" << endl;
     }
-}
-
-
-template<typename K, typename V>
-void printMap(const map<vector<K>, V>& myMap) {
-    cout << "My map has " << myMap.size() << " of keys and has these pairs:" << endl;
-    for (const auto& pair : myMap) {
-        cout << "[";
-        for (size_t i = 0; i < pair.first.size(); i++) {
-            cout << pair.first[i];
-            if (i < pair.first.size() - 1) cout << ", ";
-        }
-        cout << "] -> {" << pair.second << "}" << endl;
-    }
+    return os;
 }
 
 int main() {
@@ -62,8 +45,7 @@ int main() {
         {"cherry", 30}
     };
     
-    cout << "Map с простыми типами:" << endl;
-    printMap(simpleMap);
+    cout << simpleMap;
     
     
     map<string, vector<int>> mapWithVector = {
@@ -72,8 +54,8 @@ int main() {
         {"scores3", {76, 85, 80}}
     };
     
-    cout << "\nMap с vector как значением:" << endl;
-    printMap(mapWithVector);
+    cout << endl;
+    cout << mapWithVector;
     
     
     map<vector<int>, string> mapWithVectorKey = {
@@ -82,10 +64,10 @@ int main() {
         {{6, 7, 8, 9}, "third"}
     };
     
-    cout << "\nMap с vector как ключом:" << endl;
-    printMap(mapWithVectorKey);
+    cout << endl;
+    cout << mapWithVectorKey;
     
-    cout << "\nНажмите Enter для выхода...";
+    cout << "\nPress Enter to exit...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
     

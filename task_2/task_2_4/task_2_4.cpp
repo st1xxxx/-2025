@@ -48,7 +48,7 @@ int main() {
     cout << "\nРезультат объединения (vec1 + vec2):" << endl;
     printVector(result);
     
-    // Демонстрация с string
+    
     vector<string> strVec1 = {"Hello", "World"};
     vector<string> strVec2 = {"from", "C++"};
     

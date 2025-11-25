@@ -15,40 +15,14 @@ void printStudentInfo() {
 }
 
 
-void printVector(const vector<int>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements: ";
+template<typename T>
+ostream& operator<<(ostream& os, const vector<T>& vec) {
+    os << "My vector has " << vec.size() << " of these elements: ";
     for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i];
-        if (i < vec.size() - 1) cout << ", ";
+        os << "[" << i << "] -> " << vec[i];
+        if (i < vec.size() - 1) os << ", ";
     }
-    cout << endl;
-}
-
-void printVector(const vector<string>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements: ";
-    for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i];
-        if (i < vec.size() - 1) cout << ", ";
-    }
-    cout << endl;
-}
-
-void printVector(const vector<double>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements: ";
-    for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i];
-        if (i < vec.size() - 1) cout << ", ";
-    }
-    cout << endl;
-}
-
-void printVector(const vector<char>& vec) {
-    cout << "My vector has " << vec.size() << " of these elements: ";
-    for (size_t i = 0; i < vec.size(); i++) {
-        cout << "[" << i << "] -> " << vec[i];
-        if (i < vec.size() - 1) cout << ", ";
-    }
-    cout << endl;
+    return os;
 }
 
 int main() {
@@ -61,16 +35,16 @@ int main() {
     vector<char> charVec = {'A', 'B', 'C', 'D'};
     
     cout << "Integer vector:" << endl;
-    printVector(intVec);
+    cout << intVec << endl;
     
     cout << "\nString vector:" << endl;
-    printVector(strVec);
+    cout << strVec << endl;
     
     cout << "\nDouble vector:" << endl;
-    printVector(doubleVec);
+    cout << doubleVec << endl;
     
     cout << "\nChar vector:" << endl;
-    printVector(charVec);
+    cout << charVec << endl;
     
     cout << "\nPress Enter to exit...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');

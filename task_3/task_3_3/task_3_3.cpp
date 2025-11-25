@@ -11,9 +11,9 @@ using namespace std;
 
 void printStudentInfo() {
     SetConsoleOutputCP(CP_UTF8);
-    cout << "Студент: Скворцов Серафим Денисович" << endl;
-    cout << "Группа: M10-137БВ-25" << endl;
-    cout << "Задача: 3" << endl;
+    cout << "Student: Skvortsov Serafim Denisovich" << endl;
+    cout << "Group: M10-137BV-25" << endl;
+    cout << "Task: 3" << endl;
     cout << endl;
 }
 
