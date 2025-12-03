@@ -159,27 +159,27 @@ int main() {
     cout << "=====================================" << endl << endl;
     
     
-    Square square = {"Square", 5.0};
+    Square square = {"Квадрат", 5.0};
     square.display();
     cout << endl;
     
     
-    RectangleShape rect = {"Rectangle", 8.0, 4.0};
+    RectangleShape rect = {"Прямоугольник", 8.0, 4.0};
     rect.display();
     cout << endl;
     
     
-    RightTriangle triangle("Right Triangle", 3.0, 4.0);
+    RightTriangle triangle("Прямоугольный треугольник", 3.0, 4.0);
     triangle.display();
     cout << endl;
     
     
-    Circle circle = {"Circle", 7.0};
+    Circle circle = {"Круг", 7.0};
     circle.display();
     cout << endl;
     
     
-    RegularHexagon hexagon = {"Regular Hexagon", 6.0};
+    RegularHexagon hexagon = {"Правильный шестиугольник", 6.0};
     hexagon.display();
     
     cout << "\nНажмите Enter для выхода...";
